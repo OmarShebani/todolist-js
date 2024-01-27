@@ -1,0 +1,26 @@
+{
+  "name": "todolist-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "routers.js",
+  "scripts": {
+    "start": "node routers.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OmarShebani/todolist-js.git"
+  },
+  "author": "Omar Shebani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OmarShebani/todolist-js/issues"
+  },
+  "homepage": "https://github.com/OmarShebani/todolist-js#readme",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "mongose": "^0.0.2-security",
+    "morgan": "^1.10.0",
+    "typescript": "^5.3.3"
+  }
+}
