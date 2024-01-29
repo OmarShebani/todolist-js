@@ -1,19 +1,36 @@
-const express = require['express'];
-const ejs = require['ejs'];
-const logger = require['morgan'];
+const express = require('express');
+const logger = require('morgan');
+require('ejs');
+
+const DatabaseChecker = require('check-database.js');
+const ListManager = require('list-manager.js');
+
+if (!DatabaseChecker()) {
+    console.log("An error occurred while checking the database");
+}
 
 const app = express();
 app.set('view engine', 'ejs');
 app.set('views', 'views');
-const customLogFormat = ':remote-addr - :method :url :status :response-time ms - :res[content-length]';
+const CustomLogFormat = ':remote-addr - :method :url :status :response-time ms - :res[content-length]';
 
-app.use(logger(customLogFormat));
+app.use(logger(CustomLogFormat));
 
-app.get(['/', '/home'], function(req, res) {
+app.get(['/', '/Home'], function(req, res) {
     res.render('home');
 });
 
-app.get('/list-entries', function(req, res) {
+app.get('/ListEntries', function(req, res) {
+    res.render('list-entries');
+})
+
+app.post('/Add', function(req, res) {
+    ListManager.addEntry(req.body.addEntry);
+    res.render('list-entries');
+})
+
+app.post('/Delete', function(req, res) {
+    ListManager.addEntry(req.body.deleteEntry);
     res.render('list-entries');
 })
 
