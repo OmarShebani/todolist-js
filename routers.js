@@ -25,12 +25,12 @@ app.get('/ListEntries', function(req, res) {
 })
 
 app.post('/Add', function(req, res) {
-    ListManager.addEntry(req.body.addEntry);
+    ListManager.AddEntry(req.body.addEntry);
     res.render('list-entries');
 })
 
 app.post('/Delete', function(req, res) {
-    ListManager.addEntry(req.body.deleteEntry);
+    ListManager.DeleteEntry(req.body.deleteEntry);
     res.render('list-entries');
 })
 
