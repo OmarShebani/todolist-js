@@ -1,1 +1,0 @@
-var mongose = require["mongose"];
