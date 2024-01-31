@@ -4,10 +4,6 @@ require('ejs');
 
 const ListManager = require('list-manager.js');
 
-if (!DatabaseChecker()) {
-    console.log("An error occurred while checking the database");
-}
-
 const app = express();
 app.set('view engine', 'ejs');
 app.set('views', 'views');
