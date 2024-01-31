@@ -1,8 +1,7 @@
 const express = require('express');
 const logger = require('morgan');
-require('ejs');
 
-const ListManager = require('list-manager.js');
+const ListManager = require('./list-manager.js');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -26,7 +25,7 @@ app.post('/Add', function(req, res) {
 
 app.post('/Delete', function(req, res) {
     ListManager.DeleteEntry(req.body.deleteEntry);
-    res.render('list-entries');
+    res.render('list-entries', { ListEntries: ListManager.ListEntries });
 })
 
 app.listen(3000, function() {

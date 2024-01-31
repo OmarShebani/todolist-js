@@ -1,0 +1,9 @@
+<%- include('head') %>
+<body>
+    <header>Here is your TodoList</header>
+    <ol>
+        <% ListEntries().forEach(function (entry) { %>
+            <li> <%= entry %> </li>
+        <% }); %>
+    </ol>
+</body>
