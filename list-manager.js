@@ -7,23 +7,59 @@ const schema = new mongoose.Schema({
         type: String,
         enum: ['Admin'],
         default: 'Admin',
+        unique: true,
         required: true
         },
-    todolist: [{type: String, required: true}] 
+    todolist: [{type: String}] 
 });
-const model = mongoose.model('model', schema);
+const Model = mongoose.model('Model', schema);
 
-const actions = {
+const ListManager = {
     ListEntries: function () {
-
+        Model.findOne({ username: 'Admin' }, function (err, document) {
+            if (err) throw err;
+            return document.todolist;
+        });
     },
+
     AddEntry: function (entry) {
+        Model.findOne({ username: 'Admin' }, function (err, document) {
+            if (err) {
+              console.error(err);
 
+            } else if (document) {
+                Model.updateOne(
+                    { username: 'Admin' },
+                    { $push: { todolist: entry } },
+                    function (err, result) {
+                        if (err) throw err;
+                        console.log('Document updated:', result);
+                    }
+                );
+
+            } else {
+                Model.create(
+                    { username: 'Admin', todolist: [entry] },
+                    function (err, document) {
+                        if (err) throw err;
+                        console.log('Document created:', document);
+                    }
+                );
+            }
+        });
     },
 
-    DeleteEntry: function (EntryIndex - 1) {
-        
+    DeleteEntry: function (EntryNumber) {
+        let EntryIndex = EntryNumber - 1;
+        Model.updateOne(
+            { username: 'Admin' },
+            { $pull: { todolist: { $exists: true }, $each: [EntryIndex] } },
+            function (err, result) {
+                if (err) throw err;
+                console.log('Document updated:', result);
+            }
+        );
     }
 };
 
-module.exports = {model, actions};
+module.exports = ListManager;

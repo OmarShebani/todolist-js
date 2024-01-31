@@ -2,7 +2,6 @@ const express = require('express');
 const logger = require('morgan');
 require('ejs');
 
-const DatabaseChecker = require('check-database.js');
 const ListManager = require('list-manager.js');
 
 if (!DatabaseChecker()) {
