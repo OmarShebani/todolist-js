@@ -15,11 +15,9 @@ const schema = new mongoose.Schema({
 const Model = mongoose.model('Model', schema);
 
 const ListManager = {
-    ListEntries: function () {
-        Model.findOne({ username: 'Admin' }, function (err, document) {
-            if (err) throw err;
-            return document.todolist;
-        });
+    ListEntries: async function () {
+        const document = await Model.findOne({ username: 'Admin' }).exec();
+        return document.todolist;
     },
 
     AddEntry: function (entry) {

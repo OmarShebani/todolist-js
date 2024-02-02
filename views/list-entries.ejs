@@ -1,9 +1,14 @@
 <%- include('head') %>
 <body>
-    <header>Here is your TodoList</header>
+    <h2>Here is your TodoList</h2>
+    <% if (ListEntries) { %>
     <ol>
-        <% ListEntries().forEach(function (entry) { %>
+        <% ListEntries.forEach(function (entry) { %>
             <li> <%= entry %> </li>
         <% }); %>
     </ol>
+    <% } else { %>
+        <h4>You TodoList is empty</h4>
+    <% } %>
 </body>
+</html>
